@@ -6,6 +6,10 @@ dist/
 wheels/
 *.egg-info
 .env
+.logfire
+.DS_Store
 
 # Virtual environments
 .venv
+
+helper-commands.md
