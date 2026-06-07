@@ -19,6 +19,7 @@ class Settings:
     QDRANT_COLLECTION = os.getenv("QDRANT_COLLECTION", "kub-enterprise-rag")
 
     # --- LLM (Groq) ---
+    GROQ = os.getenv("GROQ", "groq")
     GROQ_API_KEY = os.getenv("GROQ_API_KEY")
     GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
     GROQ_FALLBACK_MODEL = os.getenv("GROQ_FALLBACK_MODEL", "openai/gpt-oss-20b")
