@@ -12,7 +12,7 @@ client = QdrantClient(
 )
 
 
-def search_enterprise_knowledge(query: str, limit: int = 8):
+def search_enterprise_knowledge(query: str, limit: int = 10):
     """
     Performs a high-precision search in the enterprise knowledge base.
     Uses the modern query_points interface.
