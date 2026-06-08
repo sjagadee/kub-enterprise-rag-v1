@@ -1,4 +1,5 @@
 import os
+import logfire
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -62,3 +63,13 @@ os.environ["LANGCHAIN_PROJECT"] = os.getenv("LANGSMITH_PROJECT", "kub-enterprise
 os.environ["LANGCHAIN_ENDPOINT"] = os.getenv("LANGSMITH_ENDPOINT", "https://api.smith.langchain.com")
 
 settings = Settings()
+
+
+def setup_logfire(service_name: str | None = None):
+    """Initializes Logfire globally with shared configuration."""
+    token = os.getenv("LOGFIRE_TOKEN")
+    logfire.configure(
+        token=token,
+        service_name=service_name,
+        scrubbing=False  # Disable scrubbing project-wide so Kubernetes terms aren't redacted
+    )

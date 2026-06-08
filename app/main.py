@@ -2,12 +2,8 @@
 # CRITICAL: logfire MUST be configured before ALL other imports
 # so that spans from all modules are captured from the start.
 # ============================================================
-import logfire
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-logfire.configure(token=os.getenv("LOGFIRE_TOKEN"))
+from app.config import setup_logfire, logfire
+setup_logfire(service_name="enterprise-rag-backend")
 
 # Now safe to import app modules
 from fastapi import FastAPI, Response

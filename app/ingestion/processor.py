@@ -1,9 +1,15 @@
+# ============================================================
+# CRITICAL: logfire MUST be configured before ALL other imports
+# so that spans from all modules are captured from the start.
+# ============================================================
+from app.config import setup_logfire, logfire, settings
+setup_logfire(service_name="enterprise-ingestion-service")
+
 import os
 import sys
 import uuid
 import json
 import tempfile
-import logfire
 import vertexai
 
 from typing import List
@@ -12,7 +18,6 @@ from google.cloud import storage
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
 
-from app.config import settings
 from app.services.retrieval.embedding_service import embed_texts
 from app.ingestion.loaders.pdf import parse_pdf
 from app.ingestion.loaders.html import parse_html
@@ -33,8 +38,6 @@ Loop-proofing (critical for Eventarc):
   to the RAW bucket in cloud mode — that would re-trigger the event infinitely.
   Bucket isolation: RAW bucket → triggers ingestion → writes only to PROCESSED bucket.
 """
-
-logfire.configure(service_name="enterprise-ingestion-service")
 
 vertexai.init(project=settings.PROJECT_ID, location=settings.LOCATION)
 
