@@ -10,6 +10,14 @@ def retrieve_node(state: AgentState):
     """
     query = state["current_query"]
 
+    if query == "CONVERSATIONAL":
+        logfire.info("Conversational query detected. Skipping retrieval.")
+        return {
+            "documents": [],
+            "status": "Using conversational history. No retrieval needed",
+            "plan": state["plan"] + ["Context Retrieved"]
+        }
+
     # Standard Retrieval Logic
     with logfire.span("Knowledge Retrieval"):
         logfire.info(f"Searching Qdrant for: {query}")
@@ -26,6 +34,6 @@ def retrieve_node(state: AgentState):
     
     return {
         "documents": formatted_docs,
-        "status": f"Found technical context.",
+        "status": "Found technical context.",
         "plan": state["plan"] + ["Context Retrieved"]
     }
