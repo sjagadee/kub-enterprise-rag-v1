@@ -60,6 +60,11 @@ with st.sidebar:
 # --- MAIN CHAT ---
 st.title("🤖 Enterprise Agentic Assistant")
 
+# Display chat messages from history on app rerun
+for message in st.session_state.messages:
+    avatar = USER_AVATAR if message["role"] == "user" else AI_AVATAR
+    with st.chat_message(message["role"], avatar=avatar):
+        st.markdown(message["content"])
 
 # Chat Input
 if prompt := st.chat_input("Ask about your documentation..."):

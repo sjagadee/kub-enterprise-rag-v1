@@ -47,7 +47,7 @@ def planner_node(state: AgentState):
 
     if decision == "CONVERSATIONAL":
         return {
-            "current_query": "CONVERSIONAL",
+            "current_query": "CONVERSATIONAL",
             "status": "Handling conversationally (using memory)...",
             "plan": ["Intent: Conversational/Memory", "Retrieval: Skipped"]
         }
