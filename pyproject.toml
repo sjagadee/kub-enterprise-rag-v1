@@ -44,3 +44,10 @@ dependencies = [
     "unstructured>=0.22.31",
     "uvicorn[standard]>=0.49.0",
 ]
+
+[tool.pyright]
+executionEnvironments = [
+  { root = "." }
+]
+extraPaths = ["."]
+

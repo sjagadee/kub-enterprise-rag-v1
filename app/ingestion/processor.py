@@ -136,7 +136,7 @@ def process_file(file_path: str, filename: str, source_type: str):
             logfire.error(f"Failed to process {filename}: {e}")
 
 
-def run_universal_ingestion(base_dir: str, explicit_source_type: str = None, wipe: bool = False):
+def run_universal_ingestion(base_dir: str, explicit_source_type: str | None = None, wipe: bool = False):
     """
     CLI entry point — scans a local directory, uploads files to RAW bucket, then processes.
     """
