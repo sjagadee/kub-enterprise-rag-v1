@@ -70,6 +70,7 @@ def generate_node(state: AgentState):
     with logfire.span("LLM Synthesis"):
         try:
             response = llm.invoke(prompt)
+            
             logfire.info(f"Response sythesized successfully")
             return {
                 "final_answer": response.content,

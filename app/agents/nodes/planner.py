@@ -42,7 +42,8 @@ def planner_node(state: AgentState):
     """
      
     with logfire.span("Planner Decision"):
-        decision = llm.invoke(prompt).content.strip()
+        response = llm.invoke(prompt)
+        decision = response.content.strip() # type: ignore
         logfire.info(f"Intent identified: {decision}")
 
     if decision == "CONVERSATIONAL":

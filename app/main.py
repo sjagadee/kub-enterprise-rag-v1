@@ -72,7 +72,7 @@ def chat_endpoint(request: QueryRequest, response: Response):
             return {
                 "question": query,
                 "answer": final_output.get("final_answer", "No answer found"),
-                "though_process": final_output.get("plan"),
+                "thought_process": final_output.get("plan"),
                 "status": final_output.get("status"),
                 "sources": final_output.get("documents", [])
             }
@@ -82,7 +82,7 @@ def chat_endpoint(request: QueryRequest, response: Response):
             return {
                 "question": query,
                 "answer": "Failed to process query, please try again later.",
-                "though_process": ["Error encountered during graph execution"],
+                "thought_process": ["Error encountered during graph execution"],
                 "status": "error",
                 "sources": []
             }
